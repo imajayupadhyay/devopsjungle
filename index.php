@@ -88,7 +88,7 @@ $result = $conn->query($sql);
 <!-- Footer -->
 <footer class="footer mt-5">
     <div class="container">
-        &copy; <?= date('Y') ?> EduSite. All rights reserved.
+        &copy; <?= date('Y') ?> DevOps Jungle. All rights reserved.
     </div>
 </footer>
 
