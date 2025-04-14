@@ -9,16 +9,16 @@ $result = $conn->query($sql);
 ?>
 
 <!-- Hero Section -->
-<section class="hero">
+<!-- <section class="hero">
     <div class="container">
         <h1>Level Up Your Learning</h1>
         <p>Curated courses designed to help you grow your skills and reach your goals.</p>
         <a href="#courses" class="btn btn-primary">Browse Courses</a>
     </div>
-</section>
+</section> -->
 <!-- Tutorials Section -->
 <section id="tutorials" class="container mt-5">
-    <h2 class="section-heading">Latest Tutorials</h2>
+    <h2 class="section-heading">Welcome to DevOps Jungle</h2>
     <div class="row g-4">
         <?php
         $tutorials_sql = "SELECT * FROM tutorials ORDER BY position ASC LIMIT 12";
@@ -54,7 +54,7 @@ $result = $conn->query($sql);
 
 
 <!-- Courses Section -->
-<section id="courses" class="container mt-5">
+<!-- <section id="courses" class="container mt-5">
     <h2 class="section-heading">Available Courses</h2>
     <div class="row g-4">
         <?php if ($result && $result->num_rows > 0): ?>
@@ -82,7 +82,7 @@ $result = $conn->query($sql);
             <p class="text-center text-muted">No courses found.</p>
         <?php endif; ?>
     </div>
-</section>
+</section> -->
 
 
 <!-- Footer -->

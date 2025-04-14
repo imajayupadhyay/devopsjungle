@@ -112,7 +112,7 @@ if (!isset($pageTitle)) {
                 <li class="nav-item"><a class="nav-link" href="#">About</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
             </ul>
-            <form class="d-flex me-3">
+            <form class="d-flex me-3" action="search.php" method="GET">
                 <input class="form-control form-control-sm me-2" type="search" placeholder="Search...">
                 <button class="btn btn-outline-success btn-sm" type="submit">Search</button>
             </form>
