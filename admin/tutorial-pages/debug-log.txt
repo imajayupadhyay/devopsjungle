@@ -1,0 +1,17 @@
+
+===========================
+Array
+(
+    [upload] => Array
+        (
+            [name] => Screenshot from 2025-04-15 16-29-44.png
+            [full_path] => Screenshot from 2025-04-15 16-29-44.png
+            [type] => image/png
+            [tmp_name] => /opt/lampp/temp/php0W0MUt
+            [error] => 0
+            [size] => 266050
+        )
+
+)
+Trying to move from: /opt/lampp/temp/php0W0MUt to /opt/lampp/htdocs/devopsjungle/uploads/1744716556_Screenshot from 2025-04-15 16-29-44.png
+✅ Upload success: 1744716556_Screenshot from 2025-04-15 16-29-44.png

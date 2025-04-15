@@ -45,7 +45,7 @@ while ($g = $groups_result->fetch_assoc()) {
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="pageModal" tabindex="-1">
+<div class="modal fade" id="pageModal" tabindex="-1" enctype="multipart/form-data">
     <div class="modal-dialog modal-lg">
         <form id="pageForm" class="modal-content">
             <div class="modal-header">
@@ -119,7 +119,7 @@ function openAddModal() {
     $('#pagePublish').prop('checked', true);
     $('#pageMetaTitle').val('');
     $('#pageMetaDescription').val('');
-    editor.setData('');
+    if (editor) editor.setData('');
     new bootstrap.Modal(document.getElementById('pageModal')).show();
 }
 
@@ -137,7 +137,7 @@ $(document).on("click", ".editBtn", function () {
     $('#pageMetaTitle').val(page.meta_title || '');
     $('#pageMetaDescription').val(page.meta_description || '');
     $('#pagePublish').prop('checked', page.published == 1);
-    editor.setData(page.content);
+    if (editor) editor.setData(page.content);
     new bootstrap.Modal(document.getElementById('pageModal')).show();
 });
 
@@ -173,13 +173,55 @@ $(document).on("click", ".deleteBtn", function() {
     }
 });
 
+// ✅ CKEditor 5 + Upload Adapter setup
 document.addEventListener("DOMContentLoaded", () => {
     loadPages();
-    ClassicEditor.create(document.querySelector("#pageContent"))
-        .then(e => editor = e)
-        .catch(err => console.error(err));
+
+    ClassicEditor.create(document.querySelector("#pageContent"), {
+        extraPlugins: [CustomUploadAdapterPlugin]
+    })
+    .then(e => editor = e)
+    .catch(err => console.error(err));
+
+    function CustomUploadAdapterPlugin(editor) {
+        editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
+            return new MyUploadAdapter(loader);
+        };
+    }
+
+    class MyUploadAdapter {
+        constructor(loader) {
+            this.loader = loader;
+        }
+
+        upload() {
+            return this.loader.file.then(file => new Promise((resolve, reject) => {
+                const data = new FormData();
+                data.append('upload', file);
+
+                fetch('upload-image.php', {
+                    method: 'POST',
+                    body: data
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.url) {
+                        resolve({ default: data.url });
+                    } else {
+                        reject(data.error || 'Upload failed.');
+                    }
+                })
+                .catch(err => reject('Upload error: ' + err));
+            }));
+        }
+
+        abort() {
+            // Optionally handle abort
+        }
+    }
 });
 </script>
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
