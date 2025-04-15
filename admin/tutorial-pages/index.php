@@ -6,8 +6,9 @@ if (!isset($_SESSION['admin_id'])) {
     header("Location: ../login.php");
     exit;
 }
+$meta_title = $meta_title ?? 'Tutorial';
 
-// Get all groups for dropdown
+// Fetch tutorial groups for dropdown
 $groups_result = $conn->query("SELECT id, title FROM tutorial_groups ORDER BY title ASC");
 $groups = [];
 while ($g = $groups_result->fetch_assoc()) {
@@ -23,9 +24,7 @@ while ($g = $groups_result->fetch_assoc()) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
-    <style>
-        body { overflow-x: hidden; }
-    </style>
+    <style>body { overflow-x: hidden; }</style>
 </head>
 <body>
 
@@ -55,6 +54,7 @@ while ($g = $groups_result->fetch_assoc()) {
             </div>
             <div class="modal-body">
                 <input type="hidden" name="id" id="pageId">
+
                 <div class="mb-3">
                     <label>Group</label>
                     <select name="group_id" id="pageGroup" class="form-select" required>
@@ -64,23 +64,38 @@ while ($g = $groups_result->fetch_assoc()) {
                         <?php endforeach; ?>
                     </select>
                 </div>
+
                 <div class="mb-3">
                     <label>Title</label>
                     <input type="text" name="title" id="pageTitle" class="form-control" required>
                 </div>
+
                 <div class="mb-3">
                     <label>Slug</label>
                     <input type="text" name="slug" id="pageSlug" class="form-control" required>
                 </div>
+
+                <div class="mb-3">
+                    <label>Meta Title</label>
+                    <input type="text" name="meta_title" id="pageMetaTitle" class="form-control">
+                </div>
+
+                <div class="mb-3">
+                    <label>Meta Description</label>
+                    <textarea name="meta_description" id="pageMetaDescription" class="form-control" rows="3"></textarea>
+                </div>
+
                 <div class="mb-3">
                     <label>Content</label>
                     <textarea name="content" id="pageContent" class="form-control" rows="10"></textarea>
                 </div>
+
                 <div class="form-check form-switch mb-3">
                     <input class="form-check-input" type="checkbox" name="is_published" id="pagePublish" value="1" checked>
                     <label class="form-check-label" for="pagePublish">Published</label>
                 </div>
             </div>
+
             <div class="modal-footer">
                 <button type="submit" class="btn btn-primary">Save Page</button>
             </div>
@@ -102,6 +117,8 @@ function openAddModal() {
     $('#pageId').val('');
     $('#pageGroup').val('');
     $('#pagePublish').prop('checked', true);
+    $('#pageMetaTitle').val('');
+    $('#pageMetaDescription').val('');
     editor.setData('');
     new bootstrap.Modal(document.getElementById('pageModal')).show();
 }
@@ -117,6 +134,8 @@ $(document).on("click", ".editBtn", function () {
     $('#pageGroup').val(page.group);
     $('#pageTitle').val(page.title);
     $('#pageSlug').val(page.slug);
+    $('#pageMetaTitle').val(page.meta_title || '');
+    $('#pageMetaDescription').val(page.meta_description || '');
     $('#pagePublish').prop('checked', page.published == 1);
     editor.setData(page.content);
     new bootstrap.Modal(document.getElementById('pageModal')).show();
@@ -127,6 +146,8 @@ $(document).on("submit", "#pageForm", function(e) {
     const formData = new FormData(this);
     formData.append("action", "save");
     formData.set("content", editor.getData());
+    formData.set("meta_title", $("#pageMetaTitle").val());
+    formData.set("meta_description", $("#pageMetaDescription").val());
 
     $.ajax({
         url: "ajax.php",

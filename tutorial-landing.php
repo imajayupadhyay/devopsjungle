@@ -2,6 +2,7 @@
 require_once('includes/db.php');
 require_once('includes/header.php');
 
+
 $group_slug = $_GET['group'] ?? '';
 
 $stmt = $conn->prepare("SELECT * FROM tutorial_groups WHERE slug = ?");

@@ -1,6 +1,7 @@
 <?php
 require_once('includes/db.php');
-$pageTitle = "Tutorial Viewer";
+$pageTitle = "$meta_title | DevOpsJungle";
+
 
 $group_slug = $_GET['group'] ?? '';
 $topic_slug = $_GET['topic'] ?? '';

@@ -8,7 +8,7 @@ if (!isset($pageTitle)) {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title><?= $pageTitle ?></title>
+    <!-- <title><?= $pageTitle ?></title> -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap + Google Fonts -->
