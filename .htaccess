@@ -1,0 +1,17 @@
+RewriteEngine On
+
+# Redirect /tutorial/group/topic to tutorial.php
+RewriteRule ^tutorial/([^/]+)/([^/]+)/?$ tutorial.php?group=$1&topic=$2 [L,QSA]
+
+# Optional: force trailing slash (optional)
+# RewriteCond %{REQUEST_FILENAME} !-f
+# RewriteRule ^([^/]+)/?$ $1/ [R=301,L]
+
+
+
+
+# If URL has /tutorial/group/topic → tutorial.php
+RewriteRule ^tutorial/([^/]+)/([^/]+)/?$ tutorial.php?group=$1&topic=$2 [L,QSA]
+
+# If URL has only /tutorial/group → tutorial-landing.php
+RewriteRule ^tutorial/([^/]+)/?$ tutorial-landing.php?group=$1 [L,QSA]
