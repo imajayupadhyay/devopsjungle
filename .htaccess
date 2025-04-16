@@ -17,3 +17,4 @@ RewriteRule ^tutorial/([^/]+)/([^/]+)/?$ tutorial.php?group=$1&topic=$2 [L,QSA]
 RewriteRule ^tutorial/([^/]+)/?$ tutorial-landing.php?group=$1 [L,QSA]
 
 RewriteRule ^blogs/([a-zA-Z0-9\-]+)$ blog.php?slug=$1 [L,QSA]
+

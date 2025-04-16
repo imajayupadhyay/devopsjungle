@@ -69,7 +69,7 @@ if (!isset($pageTitle)) {
 
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm sticky-top">
-    <div class="container">
+    <div class="container-fluid">
         <a class="navbar-brand fw-bold" href="#">DevOpsJungle</a>
         <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav">
             <span class="navbar-toggler-icon"></span>

@@ -1,0 +1,131 @@
+/* /assets/css/blog.css */
+body {
+    font-family: 'Nunito', sans-serif;
+    background-color: #f8f9fa;
+    color: #212529;
+}
+
+/* Container padding */
+.container {
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+/* Blog Cards */
+.card {
+    border: none;
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+    background-color: #fff;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+}
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(25, 135, 84, 0.15);
+}
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+/* Sidebar */
+.list-group-item.active {
+    background-color: #198754;
+    border-color: #198754;
+}
+.list-group-item a {
+    color: inherit;
+}
+.list-group-item a:hover {
+    text-decoration: underline;
+}
+
+/* Blog Content */
+.blog-content {
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+.blog-content h2, .blog-content h3 {
+    margin-top: 2rem;
+}
+.blog-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+}
+
+/* Share Buttons */
+.share-btns .btn {
+    margin-right: 10px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .card-img-top {
+        height: 160px;
+    }
+}
+.blog-hero {
+    background-color: #198754;
+    background-image: linear-gradient(to right, #198754, #145c40);
+    color: white;
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+.card-img-top {
+    height: 180px;
+    object-fit: cover;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.card {
+    border-radius: 10px;
+    transition: 0.3s ease;
+}
+.card:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    transform: translateY(-3px);
+}
+
+.blog-content {
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+.blog-content img {
+    max-width: 100%;
+    border-radius: 5px;
+}
+
+@media (max-width: 768px) {
+    .card-img-top {
+        height: 140px;
+    }
+}
+.blog-hero-single {
+    background: linear-gradient(to right, #145c40, #198754);
+    color: white;
+}
+
+.blog-hero-single h1 {
+    font-weight: 700;
+}
+
+.blog-content {
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+.blog-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+.share-buttons .btn {
+    margin-right: 10px;
+    font-size: 0.9rem;
+}

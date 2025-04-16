@@ -1,20 +1,19 @@
 <?php
 require_once('includes/db.php');
-$pageTitle = "Latest Blogs - DevOps Jungle";
+$pageTitle = "Blogs - DevOps Jungle";
 require_once('includes/header.php');
 
-// Get selected category if any
-$cat_slug = $_GET['category'] ?? null;
-$search = $_GET['search'] ?? null;
+$cat_slug = $_GET['category'] ?? '';
+$search = $_GET['search'] ?? '';
 
-// Fetch all categories for sidebar
+// Fetch categories
 $cat_q = $conn->query("SELECT * FROM blog_categories ORDER BY title ASC");
 $categories = [];
 while ($cat = $cat_q->fetch_assoc()) {
     $categories[] = $cat;
 }
 
-// Build base SQL for blog posts
+// Build query
 $sql = "SELECT p.*, c.title AS category_title, c.slug AS category_slug 
         FROM blog_posts p 
         JOIN blog_categories c ON p.category_id = c.id 
@@ -32,55 +31,58 @@ $sql .= " ORDER BY p.created_at DESC";
 $posts = $conn->query($sql);
 ?>
 
-<div class="container mt-5">
-    <h1 class="mb-4">📰 Latest Blog Posts</h1>
+<link rel="stylesheet" href="assets/css/blog.css">
 
-    <div class="row">
-        <!-- Sidebar Categories -->
-        <div class="col-md-3">
-            <form method="get" class="mb-4">
+<section class="blog-hero text-white text-center py-5">
+    <div class="container">
+        <h1 class="display-5 fw-bold">📚 Explore Latest Blogs</h1>
+        <p class="lead">Learn DevOps, Cloud, CI/CD & more from curated blogs</p>
+
+        <!-- Search + Categories -->
+        <form class="row justify-content-center g-3 mt-4" method="get">
+            <div class="col-md-4">
                 <input type="text" name="search" class="form-control" placeholder="Search blogs..." value="<?= htmlspecialchars($search) ?>">
-            </form>
-            <h5 class="mb-3">📂 Categories</h5>
-            <ul class="list-group">
-                <li class="list-group-item <?= !$cat_slug ? 'active' : '' ?>">
-                    <a href="/blogs" class="text-decoration-none d-block <?= !$cat_slug ? 'text-white' : '' ?>">All Categories</a>
-                </li>
-                <?php foreach ($categories as $cat): ?>
-                    <li class="list-group-item <?= ($cat['slug'] === $cat_slug) ? 'active' : '' ?>">
-                        <a href="/blogs?category=<?= urlencode($cat['slug']) ?>" class="text-decoration-none d-block <?= ($cat['slug'] === $cat_slug) ? 'text-white' : '' ?>">
+            </div>
+            <div class="col-md-3">
+                <select name="category" class="form-select">
+                    <option value="">All Categories</option>
+                    <?php foreach ($categories as $cat): ?>
+                        <option value="<?= $cat['slug'] ?>" <?= ($cat['slug'] === $cat_slug) ? 'selected' : '' ?>>
                             <?= htmlspecialchars($cat['title']) ?>
-                        </a>
-                    </li>
-                <?php endforeach; ?>
-            </ul>
-        </div>
-
-        <!-- Blog Post Cards -->
-        <div class="col-md-9">
-            <?php if ($posts && $posts->num_rows > 0): ?>
-                <div class="row g-4">
-                    <?php while ($post = $posts->fetch_assoc()): ?>
-                        <div class="col-md-6">
-                            <div class="card h-100 shadow-sm border-0">
-                                <?php if ($post['image'] && file_exists($post['image'])): ?>
-                                    <img src="<?= $post['image'] ?>" class="card-img-top" style="height: 180px; object-fit: cover;">
-                                <?php endif; ?>
-                                <div class="card-body d-flex flex-column">
-                                    <h5 class="card-title"><?= htmlspecialchars($post['title']) ?></h5>
-                                    <p class="card-text text-muted small mb-1"><?= htmlspecialchars($post['category_title']) ?> | <?= date('M d, Y', strtotime($post['created_at'])) ?></p>
-                                    <p class="card-text"><?= htmlspecialchars(substr($post['excerpt'], 0, 100)) ?>...</p>
-                                    <a href="/blogs/<?= $post['slug'] ?>" class="btn btn-outline-success mt-auto btn-sm">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                    <?php endwhile; ?>
-                </div>
-            <?php else: ?>
-                <p class="text-muted text-center">No blog posts found.</p>
-            <?php endif; ?>
-        </div>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-light w-100">Filter</button>
+            </div>
+        </form>
     </div>
+</section>
+
+<div class="container my-5">
+    <?php if ($posts && $posts->num_rows > 0): ?>
+        <div class="row g-4">
+            <?php while ($post = $posts->fetch_assoc()): ?>
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm border-0">
+                        <?php if ($post['image'] && file_exists($post['image'])): ?>
+                            <img src="<?= $post['image'] ?>" class="card-img-top" alt="Post Image">
+                        <?php endif; ?>
+                        <div class="card-body d-flex flex-column">
+                            <span class="badge bg-success mb-2"><?= htmlspecialchars($post['category_title']) ?></span>
+                            <h5 class="card-title"><?= htmlspecialchars($post['title']) ?></h5>
+                            <p class="text-muted small"><?= date('M d, Y', strtotime($post['created_at'])) ?></p>
+                            <p class="card-text"><?= htmlspecialchars(substr($post['excerpt'], 0, 100)) ?>...</p>
+                            <a href="/blogs/<?= $post['slug'] ?>" class="btn btn-outline-success mt-auto btn-sm">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            <?php endwhile; ?>
+        </div>
+    <?php else: ?>
+        <p class="text-center text-muted">No blog posts found.</p>
+    <?php endif; ?>
 </div>
 
 <?php require_once('includes/footer.php'); ?>
