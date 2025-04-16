@@ -15,3 +15,5 @@ RewriteRule ^tutorial/([^/]+)/([^/]+)/?$ tutorial.php?group=$1&topic=$2 [L,QSA]
 
 # If URL has only /tutorial/group → tutorial-landing.php
 RewriteRule ^tutorial/([^/]+)/?$ tutorial-landing.php?group=$1 [L,QSA]
+
+RewriteRule ^blogs/([a-zA-Z0-9\-]+)$ blog.php?slug=$1 [L,QSA]

@@ -73,3 +73,15 @@ body {
     0% { opacity: 0; transform: translateY(20px); }
     100% { opacity: 1; transform: translateY(0); }
 }
+.blog-content {
+    font-size: 1.05rem;
+    line-height: 1.8;
+}
+.blog-content h2, h3 {
+    margin-top: 1.5rem;
+}
+.blog-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+}
