@@ -38,9 +38,10 @@ require_once('includes/header.php');
     <div class="row justify-content-center">
         <div class="col-lg-10">
 
-            <?php if ($post['image'] && file_exists($post['image'])): ?>
-                <img src="<?= $post['image'] ?>" alt="Post Image" class="featured-img mb-4">
-            <?php endif; ?>
+        <?php if ($post['image']): ?>
+    <img src="/devopsjungle/<?= $post['image'] ?>" class="featured-img mb-4">
+<?php endif; ?>
+
 
             <div class="content">
                 <?= $post['content'] ?>
