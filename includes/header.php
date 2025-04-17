@@ -9,6 +9,9 @@ $currentPath = $_SERVER['REQUEST_URI'];
 <head>
   <meta charset="UTF-8">
   <title><?= htmlspecialchars($pageTitle) ?></title>
+<meta name="description" content="<?= htmlspecialchars($meta_description ?? '') ?>">
+<meta name="keywords" content="<?= htmlspecialchars($meta_keywords ?? '') ?>">
+
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Bootstrap & Icons -->
@@ -40,7 +43,14 @@ $currentPath = $_SERVER['REQUEST_URI'];
           'Contact' => '/devopsjungle/contact.php'
         ];
         foreach ($navItems as $name => $link):
-          $active = (strpos($currentPath, basename($link)) !== false) ? 'active' : '';
+          $basename = basename($link);
+          if ($basename === 'index.php' && ($currentPath === '/devopsjungle/' || $currentPath === '/devopsjungle/index.php')) {
+            $active = 'active';
+          } elseif (strpos($currentPath, $basename) !== false) {
+            $active = 'active';
+          } else {
+            $active = '';
+          }          
         ?>
           <li class="nav-item">
             <a class="nav-link <?= $active ?>" href="<?= $link ?>"><?= $name ?></a>
@@ -51,8 +61,15 @@ $currentPath = $_SERVER['REQUEST_URI'];
 
     <!-- Right Side (Desktop) -->
     <div class="d-none d-lg-flex align-items-center gap-3">
-      <a href="/devopsjungle/login.php" class="btn btn-outline-dark btn-sm">Login / Signup</a>
-      <a href="#" class="fs-5 text-dark"><i class="bi bi-search"></i></a>
+     
+      <!-- <a href="#" class="fs-5 text-dark"><i class="bi bi-search"></i></a> -->
+      <form action="/devopsjungle/search.php" method="get">
+      <div class="input-group">
+        <input type="search" name="q" class="form-control" placeholder="Search...">
+        <button class="btn btn-outline-success">Search</button>
+      </div>
+    </form>
+    <a href="/devopsjungle/login.php" class="btn btn-outline-dark btn-sm">Login / Signup</a>
     </div>
 
     <!-- Hamburger for Mobile -->

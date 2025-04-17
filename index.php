@@ -1,6 +1,8 @@
 <?php
 require_once('includes/db.php');
-$pageTitle = "DevOps Jungle";
+$pageTitle = "Homepage";
+$meta_description = "Short description here...";
+$meta_keywords = "keyword1, keyword2, keyword3";
 require_once('includes/header.php');
 
 // Fetch tutorials
