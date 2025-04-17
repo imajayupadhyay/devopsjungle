@@ -64,8 +64,7 @@ while ($row = $page_result->fetch_assoc()) {
         }
 
         .topics {
-            padding: 40px 20px;
-            max-width: 1000px;
+            padding: 40px 40px;
             margin: 0 auto;
         }
 

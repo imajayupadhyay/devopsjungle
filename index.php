@@ -77,7 +77,7 @@ $categories_result = $conn->query($categories_sql);
         <?php if ($blogs_result && $blogs_result->num_rows > 0): ?>
             <?php while($blog = $blogs_result->fetch_assoc()): ?>
                 <div class="col-md-4">
-                    <a href="blog/<?= htmlspecialchars($blog['slug']) ?>" class="card blog-card h-100 text-decoration-none text-dark">
+                    <a href="blogs/<?= htmlspecialchars($blog['slug']) ?>" class="card blog-card h-100 text-decoration-none text-dark">
                         <?php if (!empty($blog['image']) && file_exists($blog['image'])): ?>
                             <img src="<?= htmlspecialchars($blog['image']) ?>" class="card-img-top" alt="Blog Image" style="height:180px; object-fit:cover;">
                         <?php endif; ?>
