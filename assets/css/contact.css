@@ -1,0 +1,12 @@
+.contact-hero {
+    background: linear-gradient(135deg, #14532d, #198754);
+    padding: 80px 0;
+    color: white;
+}
+.contact-hero h1 {
+    font-weight: 700;
+}
+.contact-hero p {
+    font-size: 1.2rem;
+    color: #e9ecef;
+}

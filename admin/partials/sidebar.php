@@ -44,6 +44,11 @@ $current_uri = $_SERVER['REQUEST_URI'];
             </a>
         </li>
         <li>
+            <a href="../contact-messages/index.php" class="nav-link text-white <?= ($current_dir == 'contact-messages') ? 'active bg-primary' : ''; ?>">
+                <i class="bi bi-envelope me-2"></i> Contact Messages
+            </a>
+        </li>
+        <li>
             <a href="/admin/logout.php" class="nav-link text-white">
                 <i class="bi bi-box-arrow-right me-2"></i> Logout
             </a>
