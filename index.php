@@ -17,9 +17,9 @@ $result = $conn->query($sql);
     </div>
 </section> -->
 <!-- Tutorials Section -->
-<section id="tutorials" class="container mt-5">
+<section id="tutorials" class="container-fluid mt-5">
     <h2 class="section-heading">Welcome to DevOps Jungle</h2>
-    <div class="row g-4">
+    <div class="row g-4 p-5">
         <?php
         $tutorials_sql = "SELECT * FROM tutorials ORDER BY position ASC LIMIT 12";
         $tutorials_result = $conn->query($tutorials_sql);
@@ -27,7 +27,7 @@ $result = $conn->query($sql);
 
         <?php if ($tutorials_result && $tutorials_result->num_rows > 0): ?>
             <?php while($tut = $tutorials_result->fetch_assoc()): ?>
-                <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="col-lg-3 col-md-4 col-sm-6 p-2" >
                     <div class="card h-100 p-3">
                         <div class="card-body d-flex flex-column text-center">
                             <div class="mb-3">
@@ -94,6 +94,8 @@ $result = $conn->query($sql);
 
 <!-- Bootstrap Bundle -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<?php include('includes/footer.php'); ?>
+
 </body>
 </html>
 
