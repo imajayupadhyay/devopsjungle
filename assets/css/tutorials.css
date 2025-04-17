@@ -1,0 +1,24 @@
+.section-heading {
+    font-weight: 700;
+    font-size: 2rem;
+    color: #14532d;
+}
+
+.tutorial-card {
+    transition: all 0.3s ease;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    background: #fff;
+}
+
+.tutorial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+#searchTutorials {
+    border-radius: 50px;
+    padding: 12px 20px;
+    font-size: 16px;
+    border: 2px solid #198754;
+}

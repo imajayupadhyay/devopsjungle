@@ -34,7 +34,7 @@ $currentPath = $_SERVER['REQUEST_URI'];
         <?php
         $navItems = [
           'Home' => '/devopsjungle/index.php',
-          'Tutorials' => '/devopsjungle/tutorials',
+          'Tutorials' => '/devopsjungle/tutorials.php',
           'Courses' => '/devopsjungle/courses',
           'Blogs' => '/devopsjungle/blogs',
           'Contact' => '/devopsjungle/contact.php'
