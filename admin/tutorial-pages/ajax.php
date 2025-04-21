@@ -35,7 +35,7 @@ if ($action === 'fetch_all') {
                         data-group="' . $row['group_id'] . '"
                         data-title="' . htmlspecialchars($row['title'], ENT_QUOTES) . '"
                         data-slug="' . htmlspecialchars($row['slug'], ENT_QUOTES) . '"
-                        data-content="' . htmlspecialchars($row['content'], ENT_QUOTES) . '"
+                        data-content="' . htmlentities($row['content'], ENT_QUOTES | ENT_HTML5) . '"
                         data-meta_title="' . htmlspecialchars($row['meta_title'], ENT_QUOTES) . '"
                         data-meta_description="' . htmlspecialchars($row['meta_description'], ENT_QUOTES) . '"
                         data-published="' . $row['is_published'] . '"

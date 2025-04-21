@@ -144,6 +144,9 @@ require_once('includes/header.php');
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/prismjs/prism.js"></script>
+
 </body>
 </html>
 
